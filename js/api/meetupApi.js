@@ -33,8 +33,43 @@ meetupApi = {
 		});
 		
 	},
+
+	getMeetupComments: function (callback) {
+		
+		var url = "https://api.meetup.com/comments?key=" + meetupApi.key + "&sign=true&group_id=1757714&page=20&callback=?";
+	
+		function parseResults (data) {
+			
+			var results = [];
+			
+			//Iterate through results and return simpler objects as an array
+			if (data && data.results && data.results.length > 0)
+			{
+				for( var i in data.results) {
+					
+					var temp = {};
+					
+					temp.name = data.results[i].name;
+					temp.photo_url = data.results[i].photo_url;
+					temp.link = data.results[i].link;
+					temp.city = data.results[i].city;
+					temp.comment = data.results[i].comment;
+					
+					results.push(temp);
+				}
+			}
+
+			return results;
+		}
+	
+		$.getJSON(url, function (data) {
+			var results = parseResults(data);
+			callback(results);
+		});
+		
+	},
  
- 	getMeeupMembers: function (callback) {
+ 	getMeetupMembers: function (callback) {
  		function parseMemberData(data)
 		{
 			var results = [];

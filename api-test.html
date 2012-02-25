@@ -5,7 +5,10 @@
 		<script src="js/jquery-1.6.4.min.js"></script>
 	</head>
 	<body>
-		<div id="results"></div>
+		<h1>Comments</h1>
+		<div id="commentResults"></div>
+		<h2>Events</h2>
+		<div id="eventResults"></div>
 	</body>
 		<script src="js/api/meetupApi.js"></script>
 		<script>
@@ -17,15 +20,33 @@
 				
 				for(var i in data)
 				{
-					html.push("<dl>");
+					html.push("<article><dl>");
 					html.push("<dt>Name:</dt><dd>" + data[i].name + "</dd>");
 					html.push("<dt>Date:</dt><dd>" + data[i].time + "</dd>");
 					html.push("<dt>Url:</dt><dd><a href=\"" + data[i].url + "\">" + data[i].url + "</a></dd>");
 					html.push("<dt>Description:</dt><dd>" + data[i].description + "</dd>");
-					html.push("</dl>");
+					html.push("</dl></article>");
 				}
 				
-				$("#results").append(html.join(''));
+				$("#eventResults").append(html.join(''));
+			});
+			
+			meetupApi.getMeetupComments(function(data) {
+				
+				var html = [];
+				
+				for(var i in data)
+				{
+					html.push("<article><dl>");
+					html.push("<dt>Name:</dt><dd>" + data[i].name + "</dd>");
+					html.push("<dt>From:</dt><dd>" + data[i].city + "</dd>");
+					html.push("<dt>Comment:</dt><dd>" + data[i].comment + "</dd>");
+					html.push("<dt>User Photo URL:</dt><dd>" + data[i].photo_url + "</dd>");
+					html.push("<dt>User Profile URL:</dt><dd>" + data[i].link + "</dd>");
+					html.push("</dl></article>");
+				}
+				
+				$("#commentResults").append(html.join(''));
 			});
 			
 			
