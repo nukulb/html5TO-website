@@ -34,7 +34,7 @@ meetupApi = {
 		
 	},
  
- 	getMeeupMembers: function (callback) {
+ 	getMeetupMembers: function (callback) {
  		function parseMemberData(data)
 		{
 			var results = [];
