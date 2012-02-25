@@ -272,13 +272,22 @@ header blockquote img.LeftQuote {
 	padding:80px 0;
 }
 
-#lightbox{
+#lightbox {
 	width: 880px;
 	height: 360px;
 	background-color: #EBEBEB;
 	border: 1px solid #AEAEAE;
+	overflow:hidden;
+}
 
+#lightbox > div.Slider {
+	position:relative;
+}
 
+#lightbox > div.Slider > div {
+	float:left;
+	width:100%;
+	height:100%;
 }
 
 /* COLUMNS */
@@ -354,14 +363,15 @@ footer section ul li{
    
 }
 
-footer ul li a:link, a:visited{
+footer ul li a {
     padding: 6px;
-    color:white;
+    color:#fff;
 }
 
 footer ul li a:hover {
     padding: 6px;
     background-color: #0092C2;
+    text-decoration: none;
     color:white;
 }
 
