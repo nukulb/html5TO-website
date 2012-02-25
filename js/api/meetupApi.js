@@ -16,6 +16,7 @@ meetupApi = {
 					
 					var temp = {};
 					
+					temp.id = data.results[i].id;
 					temp.name = data.results[i].name;
 					temp.time = data.results[i].time;
 					temp.url = data.results[i].event_url;
@@ -95,6 +96,43 @@ meetupApi = {
 		    var results = parseMemberData(data);
 			callback(results);
 		});
- 	}
+ 	},
+ 	
+	getMeetupEventRsvps: function (event_id, callback) {
+
+		var url = "https://api.meetup.com/2/rsvps/?key=" + meetupApi.key + "&event_id=" +  event_id + "&rsvp=yes&order=name&callback=?";
+	
+		function parseResults (data) {
+			
+			var results = [];
+			
+			//Iterate through results and return simpler objects as an array
+			if (data && data.results && data.results.length > 0)
+			{
+				for( var i in data.results) {
+					
+					var temp = {};
+					
+					temp.rsvp_id = data.results[i].rsvp_id;
+					temp.comments = data.results[i].comments;
+					temp.member_id = data.results[i].member.member_id;			
+					temp.member_name = data.results[i].member.name;
+					if (data.results[i].member_photo) {
+            temp.member_photo_thumb_link = data.results[i].member_photo.thumb_link;
+          }
+          temp.member_profile = "http://www.meetup.com/HTML5-Web-App-Developers/members/" +  temp.member_id    +  "/";        			
+					results.push(temp);
+				}
+			}
+
+			return results;
+		}
+	
+		$.getJSON(url, function (data) {
+			var results = parseResults(data);
+			callback(results);
+		});
+		
+	} 	
  	
 };

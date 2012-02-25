@@ -5,10 +5,14 @@
 		<script src="js/jquery-1.6.4.min.js"></script>
 	</head>
 	<body>
+
 		<h2>Google Plus Posts</h2>
 		<div id="googlePlusResults"></div>
 		
-		<h2>Comments</h2>
+		<h1>eventRsvpResults</h1>
+		<div id="eventRsvpResults"></div>
+
+		<h1>Comments</h1>
 		<div id="commentResults"></div>
 		
 		<h2>Events</h2>
@@ -20,6 +24,28 @@
 		<script>
 
 		$(document).ready( function() {
+		
+			meetupApi.getMeetupEventRsvps( "sgddqypcbbc",   function(data) {
+				
+				var html = [];
+				
+				for(var i in data)
+				{
+					html.push("<article><dl>");
+					html.push("<dt>Name:</dt><dd>" + data[i].member_name + "</dd>");
+					html.push("<dt>Member ID:</dt><dd>" + data[i].member_id + "</dd>");
+					html.push("<dt>RSVP Id:</dt><dd>" + data[i].rsvp_id + "</dd>");					
+					html.push("<dt>Comments:</dt><dd>" + data[i].comments + "</dd>");
+					html.push("<dt>Member Images:</dt><dd><img src = '" + data[i].member_photo_thumb_link + "'></dd>");	
+					html.push("<dt>Member Url:</dt><dd>" + data[i].member_profile + "</dd>");          				
+					html.push("</dl></article>");
+				}
+				
+				
+				$("#eventRsvpResults").append(html.join(''));
+			});		
+		
+		
 
 			meetupApi.getMeetupEvents(function(data) {
 				
@@ -29,6 +55,7 @@
 				{
 					html.push("<article><dl>");
 					html.push("<dt>Name:</dt><dd>" + data[i].name + "</dd>");
+					html.push("<dt>Id:</dt><dd>" + data[i].id + "</dd>");					
 					html.push("<dt>Date:</dt><dd>" + data[i].time + "</dd>");
 					html.push("<dt>Url:</dt><dd><a href=\"" + data[i].url + "\">" + data[i].url + "</a></dd>");
 					html.push("<dt>Description:</dt><dd>" + data[i].description + "</dd>");
@@ -55,6 +82,7 @@
 				
 				$("#commentResults").append(html.join(''));
 			});
+
 
 			googlePlusApi.getLatestGooglePlusActivity(function(data) {
 				
