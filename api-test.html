@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>TEST API PAGE</title>
+		<script src="js/jquery-1.6.4.min.js"></script>
+	</head>
+	<body>
+		<h2>Google Plus Posts</h2>
+		<div id="googlePlusResults"></div>
+		
+		<h2>Comments</h2>
+		<div id="commentResults"></div>
+		
+		<h2>Events</h2>
+		<div id="eventResults"></div>
+		
+	</body>
+		<script src="js/api/meetupApi.js"></script>
+		<script src="js/api/googlePlusApi.js"></script>
+		<script>
+
+		$(document).ready( function() {
+
+			meetupApi.getMeetupEvents(function(data) {
+				
+				var html = [];
+				
+				for(var i in data)
+				{
+					html.push("<article><dl>");
+					html.push("<dt>Name:</dt><dd>" + data[i].name + "</dd>");
+					html.push("<dt>Date:</dt><dd>" + data[i].time + "</dd>");
+					html.push("<dt>Url:</dt><dd><a href=\"" + data[i].url + "\">" + data[i].url + "</a></dd>");
+					html.push("<dt>Description:</dt><dd>" + data[i].description + "</dd>");
+					html.push("</dl></article>");
+				}
+				
+				$("#eventResults").append(html.join(''));
+			});
+			
+			meetupApi.getMeetupComments(function(data) {
+				
+				var html = [];
+				
+				for(var i in data)
+				{
+					html.push("<article><dl>");
+					html.push("<dt>Name:</dt><dd>" + data[i].name + "</dd>");
+					html.push("<dt>From:</dt><dd>" + data[i].city + "</dd>");
+					html.push("<dt>Comment:</dt><dd>" + data[i].comment + "</dd>");
+					html.push("<dt>User Photo URL:</dt><dd>" + data[i].photo_url + "</dd>");
+					html.push("<dt>User Profile URL:</dt><dd>" + data[i].link + "</dd>");
+					html.push("</dl></article>");
+				}
+				
+				$("#commentResults").append(html.join(''));
+			});
+
+			googlePlusApi.getLatestGooglePlusActivity(function(data) {
+				
+				var html = [];
+				
+				for(var i in data)
+				{
+					html.push("<article><dl>");
+					html.push("<dt>Google Plus Activity Name:</dt><dd>" + data[i].title + "</dd>");
+					html.push("<dt>Google Plus Activity Creation Date:</dt><dd>" + data[i].pub_date + "</dd>");
+					html.push("<dt>Google Plus Activity Url:</dt><dd><a href=\"" + data[i].url + "\">" + data[i].url + "</a></dd>");
+					html.push("</dl></article>");
+				}
+				
+				$("#googlePlusResults").append(html.join(''));
+			});
+
+		});
+		</script>
+
+</html>
