@@ -5,17 +5,27 @@
 		<script src="js/jquery-1.6.4.min.js"></script>
 	</head>
 	<body>
-		<ul id="results"></div>
+		<div id="results"></div>
 	</body>
 		<script src="js/api/meetupApi.js"></script>
 		<script>
 
 		$(document).ready( function() {
 			meetupApi.getMeetupEvents(function(data) {
+				
+				var html = [];
+				
 				for(var i in data)
 				{
-					$("#results").append("<li>" + data[i].name + "</li>");
+					html.push("<dl>");
+					html.push("<dt>Name:</dt><dd>" + data[i].name + "</dd>");
+					html.push("<dt>Date:</dt><dd>" + data[i].time + "</dd>");
+					html.push("<dt>Url:</dt><dd><a href=\"" + data[i].url + "\">" + data[i].url + "</a></dd>");
+					html.push("<dt>Description:</dt><dd>" + data[i].description + "</dd>");
+					html.push("</dl>");
 				}
+				
+				$("#results").append(html.join(''));
 			});
 		});
 		</script>
