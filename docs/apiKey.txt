@@ -7,4 +7,8 @@ Api call provided by the meetup api console to get data for the HTML 5 group:
 
 https://api.meetup.com/2/groups?key=d6c7f2b5a424d5768523b2141b82e&sign=true&group_urlname=http://www.meetup.com/HTML5-Web-App-Developers/&page=20
 
+Meetup Group ID: 1757714
 
+Api call to get all member of group:
+
+https://api.meetup.com/2/members?group_id=1757714&key=73a1413161e5d5f525618178644773
