@@ -81,7 +81,8 @@ meetupApi = {
 					var temp = {};
 					
 					temp.name = data.results[i].name;
-					temp.photo_url = data.results[i].photo_url;
+					var tmpPhotoUrl = data.results[i].photo_url;						
+					temp.photo_url = tmpPhotoUrl.replace(/member_/g, "thumb_"); 
 					temp.profile_url = data.results[i].profile_url;
 					temp.bio = data.results[i].bio;
 					
