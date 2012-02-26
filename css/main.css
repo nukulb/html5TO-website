@@ -264,8 +264,6 @@ header blockquote img.LeftQuote {
 }
 
 
-
-
 /* LIGHTBOX */
 
 #MainContent{
@@ -275,7 +273,7 @@ header blockquote img.LeftQuote {
 #lightbox {
 	width: 880px;
 	height: 360px;
-	background-color: #EBEBEB;
+	background-color: #fff;
 	border: 1px solid #AEAEAE;
 	overflow:hidden;
 	position:relative;
@@ -285,10 +283,91 @@ header blockquote img.LeftQuote {
 	position:relative;
 }
 
+#lightbox > a {
+	position:absolute;
+	top:140px;
+	
+	height:0;
+	padding-top:65px;
+	overlow:hidden;
+	width:65px;
+	
+	display:block;
+	background-position:0 0;
+	background-repeat:no-repeat;
+	
+	z-index:10;
+}
+
+#lightbox > a#previous {
+	left:10px;
+	background-image:url("/img/left-slide-arrow.png");
+	display:none;
+}
+
+#lightbox > a#next {
+	right:10px;
+	background-image:url("/img/right-slide-arrow.png");
+}
+
 #lightbox > div.Slider > div {
 	float:left;
-	width:100%;
-	height:100%;
+	padding:20px;
+	width:840px;
+	height:320px;
+}
+
+#SliderNav {
+	padding-top:20px;
+	text-align:center;
+}
+
+#SliderNav a {
+	background-color:#fff;
+	border:1px solid #aeaeae;
+	
+	display:inline-block;
+	width:20px;
+	height:20px;
+	margin-left:10px;
+	
+	-moz-border-radius:10px;
+	-o-border-radius:10px;
+	-webkit-border-radius:10px;
+	border-radius:10px;
+	
+	-moz-box-shadow:inset 0 2px 4px rgba(0, 0, 0, 0.27), 0 1px 0 #fff;
+	-o-box-shadow:inset 0 2px 4px rgba(0, 0, 0, 0.27), 0 1px 0 #fff;
+	-webkit-box-shadow:inset 0 2px 4px rgba(0, 0, 0, 0.27), 0 1px 0 #fff;
+	box-shadow:inset 0 2px 4px rgba(0, 0, 0, 0.27), 0 1px 0 #fff;
+	
+	cursor:pointer; cursor:hand;
+}
+
+#SliderNav a.Selected, #SliderNav a:hover {
+	background-color:#0092bf;
+	
+	-moz-box-shadow:0 1px 2px rgba(0, 0, 0, 0.27),inset 0 1px 0 rgba(255, 255, 255, 0.6);
+	-o-box-shadow:0 1px 2px rgba(0, 0, 0, 0.27),inset 0 1px 0 rgba(255, 255, 255, 0.6);
+	-webkit-box-shadow:0 1px 2px rgba(0, 0, 0, 0.27),inset 0 1px 0 rgba(255, 255, 255, 0.6);
+	box-shadow:0 1px 2px rgba(0, 0, 0, 0.27),inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+#SliderNav a:first-child {
+	margin-left:0;
+}
+
+#SliderNav a span {
+	visibility: hidden;
+}
+
+.Page p {
+	font-family:Georgia, Serif;
+	font-size:24px;
+	margin-left:100px;
+	margin-top:10px;
+	line-height:36px;
+	width:640px;
 }
 
 /* COLUMNS */
