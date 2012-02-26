@@ -543,5 +543,14 @@ fieldset li label{
 /*RESOURCES*/
 
 .resources h2{
-	color:#0092BF;}
+	color:#0092BF;
+}
+
+ul {
+	list-style-type: none;
+	}
+	
+ul li h3 {
+	color:#555;
+}
 
