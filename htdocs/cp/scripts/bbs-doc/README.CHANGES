@@ -1,0 +1,131 @@
+[1-8-2000]
+
+[1] Fixed security issue pointed out by cgisecurity.com. The read and reply_to_message 
+variables are now filtered for proper input after the ReadParse() function.
+
+[7-26-98]
+
+[1] Fixed more taint mode stuff. Specifically:
+
+[2] Changed authentication libraries to latest version since the old ones had taint mode problems.
+
+[3] Changed setup file loading so user supplied setup file name is compared with taint mode.
+
+[4] Untainted file listing of messages so that old messages could be unlinked (deleted) based on
+the criteria in the setup file.
+
+[3-31-98]
+
+[1] Added -T taint checking to the header of the CGI script.  For example, 
+
+#!/usr/local/bin/perl
+
+becomes
+
+#!/usr/local/bin/perl -T
+
+Perl 4 Note: Perl 4 does not support the -T parameter. Instead, use
+#!/usr/local/bin/taintperl
+
+Taint checking basically forces the programs to validate all input that is
+going to have any effect on files or system calls. 
+
+In addition, library calls need to be explicitly named. So ./ is prefixed
+in front of required libraries in the current subdirectory.
+
+[2] Made modifications to the BBS to support taint checking.
+
+Anytime a filename results from input from a user such as form input,
+this input needs to be validated in order to be considered safe by the
+taint checking perl script.
+
+Thus, changes have been made to validate the data using techniques
+described in the perl documentation and the WWW security FAQ located at
+http://www.w3.org/Security/Faq/ by Lincoln Stein
+
+[3] Made modifications to the Authentication and Mail Library
+to support taint checking.
+
+Same issues pop up here.
+
+[4] Actual file modifications that were made follows:
+
+[bbs_entrace.cgi]
+
+-  Added -T flag
+
+[bbs_forum.cgi]
+
+-  Added -T flag
+
+-  Around line 665, added the following lines to satisfy taint checking
+
+    $forum =~ /(\w*)/;
+    $forum = $1;
+
+Basically this is done because the file upload requires renaming
+the file to a name that is based on $forum. Since $forum results 
+from a form variable the user has entered, it needs to be untainted.
+
+The code above matches only WORD characters (a-z,A-Z,0-9, underscores). The
+parentheses in the regular expression assigns the match to a special
+variable: $1.
+
+Then $1 (untainted) gets assigned to $forum. Thus, $forum is no longer
+tainted.
+
+- Around line 569 added the following line to satisfy taint checking:
+
+    $reply_to_message =~ /(\d{6})/;
+    $reply_to_message = $1 || "000000";
+
+Basically, in the reply message subroutine, the $reply_to_message is
+actually a result of a form variable of the message to reply to.  The
+above regular expression makes sure that it matches 6 digits as a valid
+reply to message #.  
+
+The || "000000" replaces $reply_to_message with six zeros if the pattern
+did not match properly. This makes the message into an original post
+(instead of a reply) if the reply message # is not valid.
+
+[auth-lib.pl]
+
+Added code to validate the session variable and make sure it only consists
+of word characters.
+
+Around line 216 immediately before $session_file is assigned, added the
+following code for the validation:
+
+    $session =~ /(\w*)/;
+    $session = $1;
+
+[mail-lib.pl]
+
+Since sendmail is called as an external program from the sendmail
+version of mail-lib.pl, the PATH environment variable needs to be
+untainted.  This is easily done by simply blowing the path away
+for the duration of the opening of the sendmail program.
+
+Note, although I am placing an absolute path to the sendmail
+program by default, I still need to do this task because Perl does
+not know for sure whether I am calling a program with an 
+absolute path.  For example, Perl does not know if sendmail
+is a binary program on its own or maybe it is a shell script
+that calls other programs WITHOUT absolute paths referenced.
+
+Thus, taint forces us to make sure the path is safe.
+
+Here is the code to change around line 71. It basically surrounds
+the existing code that opens sendmail.
+
+Note that the old path is preserved in case it turns out
+we need it for anything in another module.
+
+    local($old_path) = $ENV{"PATH"};
+    $ENV{"PATH"} = "";
+
+    open (MAIL, "|$mail_program") ||
+        &web_error("Could Not Open Mail Program");
+ 
+    $ENV{"PATH"} = $old_path;
+

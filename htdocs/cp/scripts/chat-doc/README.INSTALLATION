@@ -1,0 +1,220 @@
+                           BASIC INFORMATION
+
+Name: Extropia's WebChat
+Version: 2.0
+Last Modified: 04-02-98
+
+                              COPYRIGHT
+
+You may use this code according to the terms specified in the "Artistic
+Licnse" included with this distribution.  The license can be found in the
+"Documentation" subdirectory as a file named README.LICENSE. If for some
+reason the license is not included, you may also find it at
+www.extropia.com.
+
+Though you are not obligated to do so, please let us know if you have
+successfully installed this application.  Not only do we appreciate seeing
+the wonderful things you've done with it, but we will then be able to
+contact you in the case of bug reports or security announcements.  To
+register yourself, simply send an email to register@extropia.com.
+
+Finally, if you have done some cool modifications to the scripts,
+please consider submitting your code back to the public domain and getting
+some community recognition by submitting your modifications to the
+Extropia Cool Hacks page.  To do so, send email to hacks@extropia.com
+
+                               DESCRIPTION
+
+WebChat is a useful CGI program that allows a number of people on the
+World Wide Web to talk to one another simultaneously. It differs from a
+BBS (bulletin board system), in which the messages are typically read
+hours or days after they are posted. The ability to chat on the Web can be
+a quick way to hold a "virtual meeting" .  Although both WebChat and
+WebBBS store messages for other people to read, there is a major
+difference in how the user sees and posts messages.  The BBS emphasizes
+long-term storage of messages, including sta tistical data such as the
+date and time the message is posted. The BBS also encourages users to
+branch out into different topics in "threads" of replies. 
+
+On the other hand, WebChat emphasizes the quick posting of small messages
+much like a conversation among a group of people. Dialogue is designed to
+flow swiftly in small, easily digested chunks. Additionally, because the
+topic is being discussed by eve ryone at the same time, there is little
+room for different people discussing many different things in the same
+chat session. Thus, there is no reason to keep track of different threads
+of conversation. 
+
+Because people are discussing things simultaneously in real time, another
+feature of WebChat is the ability to refresh or display new messages as
+quickly as desired. This is done using the META HTML tag to force
+refreshes within a cert ain time frame. 
+                
+WebChat includes many features designed to facilitate this kind of
+dialogue. In WebChat, users can refresh messages using a button that is
+displayed in plain view. In addition, if the user is using a browser such
+as Netscape, that supports the META REFRESH HTML tag, the user can choose
+to have the chat messages refresh or redisplay themselves automatically at
+a user-defined interval. 
+
+Messages are displayed in chronological order of posting from most recent
+to oldest so that users can quickly look through a list of statements. In
+addition, users can specify whether to see only new messages each time
+they refresh the screen or to inc lude a user-defined number of previous
+messages. Viewing several of the previous posts along with new ones tends
+to provide the user with greater continuity. 
+
+By default, messages are posted to everyone, and the user's information is
+embedded as part of a posted message. This arrangement facilitates quick
+posting. By default, posted messages are seen by everyone. However, the
+user has a choice of entering a different username to specify whom the
+message should go to; the message is then entered as a private message
+from one person to another. This is option analogous to someone whispering
+a comment to someone else in the middle of a larger meeting. 
+
+Additionally, Netscape-style frames are supported;  messages are refreshed
+in one frame while the user types messages in another frame. This feature
+allows a user to set a relatively high refresh rate for seeing new
+messages, while leaving the message s ubmission form intact while the user
+is typing a message.  WebChat also has configurable options such as the
+automatic announcement of a user's entry into the chat area, allowing
+people to keep track of who is currently in the system. 
+                
+Also, when a person leaves, he or she is encouraged to announce the
+departure by pressing the Log Off button. Nothing is more disturbing than
+to find out the person you were chatting with has left the room! 
+
+In addition, WebChat can be customized to remove old messages by age and
+by number of messages. For example, if WebChat is used for real-time
+conversations, it is generally not useful to keep the conversation
+messages for more than an hour. Additional ly, you may want to make sure
+that not more than 10 or 20 messages stay around at any given point,
+because messages older than the first 10 may be irrelevant to the current
+course of conversation. On the other hand, on other chat areas, you may
+want to keep the messages around for a long time to keep a full transcript
+of the discussion or meeting. 
+
+                BASIC INSTALLATION (UNARCHIVING THE APPLICATION)
+
+Once you have downloaded the TAR file (a single file containing all
+associated files in their relative positions under the root directory),
+transfer the TAR file to an executable directory on your web server and
+untar them.  On UNIX systems, you may type the following at the
+command line:
+
+                          tar xvfp filename.tar
+
+       (If you are using a non-UNIX Operating System, you may
+       download a TAR/UNTAR program by pointing your Web browser 
+       to http://www.shareware.com).
+
+                 BASIC INSTALLATION (SETTING PERMISSIONS)
+
+Your Web server must have permission to read, write or execute as needed.
+Each sub-directory and file in the application has its own correct
+permissions level associated with it.  Once you have unarchived (UNTAR)
+the application, you must then set the correct permissions.  On UNIX  
+systems, you will use the "chmod" command.   The following table is a  
+quick guide to setting permissions for UNIX servers.
+
+        PERMISSION      COMMAND
+        rwxrwxrwx       chmod 777 filename
+        rwxrwxr-x       chmod 775 filename
+        rwxr-xr-x       chmod 755 filename
+        rw-rw-r--       chmod 664 filename
+        rw-r--r--       chmod 644 filename
+
+        Note: Not setting your permissions correctly is the
+        NUMBER 1 reason why installations fail.  Take time to
+        get this right.
+
+The actual permissions required for the subdirectories and files used by
+this application are listed in the next section.
+       
+         BASIC INSTALLATION (FILES, DIRECTORIES, AND PERMISSIONS)
+                 
+The TAR file will then expand into a root directory called Chat.
+Chat will contain several sub-directories and several files.
+The diagram below depicts the directory structure as well as the  
+permissions which must be applied to the files and subdirectories used by
+the application.
+
+Chat Root Directory (drwxr-xr-x)
+   |____Chat_CGI Sub-directory (drwxrwxrwx)
+   |____Chat_Open Sub-directory (drwxrwxrwx)
+   |____Documentation Sub-directory (dr-xr-xr-x)
+   |       |____All files in this dir (-r--r--r--)
+   |____Sessions Sub-directory (drwxrwxrwx)
+   |____cgi-lib.pl (-r--r--r--)
+   |____chat-html.pl (-r--r--r--)
+   |____chat.cgi (-r-xr-xr-x)
+   |____chat.setup (-r--r--r--)
+   |____index.html (-r--r--r--)
+
+     BASIC INSTALLATION (CHANGING SITE-SPECIFIC VARIABLES IN CHAT.SETUP)
+
+Change the site-specific variables in chat.setup acccording to the
+following logic:
+
+@chat_rooms is a list of chat names.  There must be a directory for each
+chat room.  Ala, for "open" we need Chat_Open directory
+
+@chat_directories is a list of directories relative to the
+current one where the chat_directories reside
+
+@chat_variable is a list of chat id's that are
+used to reference the forum names.  For example,
+if @chat_variable = ("cgi") and @chat_rooms=("CGI Programming")
+then calling the script as "chat.cgi?chat_room=cgi" will
+reference the "CGI Programming" room.
+
+$chat_script allows you to change the name reference of the
+script.  The default is "chat.cgi".  For servers such as
+NT Netscape v1.12 that really requires the program to be encapsulated
+in anther one such as a .bat file, this is where you would
+change the references to the CGI program.
+
+You may want to disallow HTML Images or HTML code
+Set the $no_html or $no_html_images to "on"
+if you want to disallow either html code or just
+html images from being placed in your chat
+
+$chat_session_dir is the directory relative to the 
+chat script where the session files are stored
+
+$chat_session_length is the time in days that
+session files stay active.
+
+$chat_who_length is the time in days that the
+who files stay active to show who is an
+occupant in the chat room
+
+$chat_announce_entry = "on" if we want
+a message to automatically post announcing
+someone's logging into the chat room
+
+$prune_how_many_days > 0 means delete messages older
+than this many days.
+
+$prune_how_many_sequences > 0 means delete old messages
+if there are more than this many sequence numbers in
+the directory.
+
+
+                           RUNNING THE SCRIPT
+
+Make sure that you are using Perl 5.0 or better and that the first line of
+the executable points to the location of perl on your server.  For
+example, if your Perl interpreter is located in the "/usr/local/sbin"
+directory, you should change the first line to read: 
+        
+                        #!/usr/local/sbin/perl -T
+        
+When you want to view the chat from the web, simply reference it
+as you would an HTML document. For, instance, something like...
+        
+          http://www.foobar.com/cgi-bin/Chat/chat.cgi
+
+
+               TECHNICAL SUPPORT
+        
+Further technical support can be found at www.extropia.com

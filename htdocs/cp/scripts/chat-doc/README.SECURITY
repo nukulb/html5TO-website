@@ -1,0 +1,114 @@
+			    SECURITY IN GENERAL
+
+There is no such thing as a "secure system".  The moment your systems
+administrator decides to provide any services to the users of your system,
+is the moment your system becomes insecure.  
+
+Programs will always have bugs and security holes and the management of
+security is always an ongoing battle.
+
+Like any service provided by your system, web services present security
+problems.  SSI, Authentication, Web Document Retrieval, CGI, Servelets,
+Modules, Server APIs, and all the rest of the services which can be
+provided by your web server may open a myriad of obscure, but serious
+holes. 
+
+Of course, we all know that the whole point of having a web server is to
+provide services.  If you close off all contact with the outside world,
+what good is a networked computer at all.  
+
+Thus, one must accept the dangers inherent in web services, but take
+the
+responsibility to do whatever one can to mitigate those dangers.
+
+Your responsibility as a programmer and user of a shared system is to
+make sure that you make your code as secure as possible.
+
+Doing so means that you have the responsibility to:
+
+1. Notify your systems administrator when you install an application.
+   Provide her with the source code if she requests it.
+
+2. Make sure keep track of bug reports and security announcements for any
+   application you install.  That means notifying the author of the
+   application that you have installed it.
+
+3. Keep up to date on security issues in general.  There are many FAQs,
+   books, and USENET/Web forums related to Web Security.  Get familiar
+   with them.
+
+4. Follow all the instructions related to security that are included with 
+   the applications.
+
+5. Ask for help and advice on how to make your site more secure.
+
+6. Report all suspect bugs or security holes to the authors of the
+   program.
+
+7. Examine access and error logs for attempted hacks.  If you see
+   something even remotely suspicious, report it to your systems
+   administrator.
+
+8. Make regular backups.
+
+	
+		    SECURITY ISSUES FOR THIS SCRIPT
+
+Here are a list of issues you should understand before making this script
+available to the public.
+
+1. Any directory containing code, setup information, data, or libraries
+   should contain an index.html file so that a user can not get a raw
+   directory listing.
+
+2. All file names should be changed from the default names in the
+   distribution, to your own names.  
+
+   For example, a file like default.setup should be changed to something
+   like myScript.setup.txt.  Make the new name as unguessable as possible.
+
+   Remember, other people can download the distribution file as well.  If
+   you do not change the filenames, they can easily download your
+   administrative files (such as password files, setup files, or data
+   files).
+
+   For further security, use the .cgi extension for important files.  The
+   .cgi extension will tell the web server not to simply display the file,
+   but to run it as a CGI script.  Sensitive files (password, data or
+   setup files) will return a 500 Server Error if treated as a CGI script 
+   which will deter the hacker.
+
+3. Better yet, move all files except for executables, out of the web
+   document tree altogether so that there is no possible way a user could 
+   access them using their web browser. 
+
+   This is why we have put all the relevant file paths in the setup files.
+   It should be easy to move them all by simply changing their path
+   location in the setup file.  This is the best option.
+
+4. Make sure that no file is writable unless it MUST be writable for the
+   program to work.  For example, a setup file should not be writable
+   (chmod 444) because the application will never need to write to it.
+   However, a data file will need to be writable (chmod 666).  
+
+   Similarly, do not allow write access to directories which contain files
+   that do not require write access.  If there are files which require
+   write access, try to keep them all in a specific directory.  Do not
+   include any non-write access files in that directory.  
+
+5. Tell your systems administrator to revoke CGI privileges for any
+   directory which contains files that MUST have write access.
+
+6. Check with your systems administrator to see if SSI has been enabled on
+   your web site.  If so, disable all dynamically generated HTML output.
+   In most scripts you will find a variable like $allow_html which can be
+   used for this disabling.  Also, see if your systems administrator can
+   disable SSI in your CGI directories.
+
+7. Do not modify these application files to include any system calls and
+   do not modify executables such that user-defined data can be passed to
+   the shell.
+
+8. Keep up to date with security by registering this script with
+   register@extropia.com and by visiting www.extropia.com regularly for
+   security and bug announcements.

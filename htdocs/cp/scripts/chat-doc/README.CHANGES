@@ -1,0 +1,68 @@
+[11-14-98]
+
+[1] Fixed chat.cgi being hardcoded in chat-html.pl. Thanks to Raymond
+Kaya for the notification.
+
+[10-21-98]
+
+[1] Fixed bug with old chat messages not deleting.  Thanks to Ed Milts
+and Raymond Kaya for the notification.
+
+[7-26-98]
+
+[1] Fixed many taint mode issues including the following:
+
+[2] Old messages could not be deleted because the file list needed to be untainted.
+
+[3] Untainted setup file if a user custom setup file was passed to the script.
+
+[4] Untainted session information so that who files and other files dependent on
+session information could be removed when they expire.
+
+[3-31-98]
+
+[1] Added -T taint checking to the header of the cgi script.  For example, 
+
+#!/usr/local/bin/perl
+
+becomes
+
+#!/usr/local/bin/perl -T
+
+Perl 4 Note: Perl 4 does not support the -T parameter. Instead, use
+#!/usr/local/bin/taintperl
+
+Taint checking basically forces the programs to validate all input that is
+going to have any effect on files or system calls. 
+
+In addition, library calls need to be explicitly named. So ./ is prefixed
+in front of required libraries in the current subdirectory.
+
+[2] Made modifications to the main Chat script to support taint checking.
+
+Anytime a filename results from input from a user such as form input,
+this input needs to be validated in order to be considered safe by the
+taint checking perl script.
+
+Thus, changes have been made to validate the data using techniques
+described in the perl documentation and the WWW security FAQ located at
+http://www.w3.org/Security/Faq/ by Lincoln Stein
+
+[3] Actual file modifications that were made follows:
+
+Added code to validate the session variable and make sure it only consists
+of word characters.
+
+Lines 475 and 331 both require clean up of the $session variable. So code 
+was added to do this:
+
+    $session =~ /(\w*)/;
+    $session = $1;
+
+Note though that when taint mode is on, paths need to become more specific. For  
+example, the library require statments use "./" to indicate explicitly that
+we are grabbing the library from the current directory and not just in the
+@INC include path.  This change was also done to the chat.cgi program.
+
+
+

@@ -1,0 +1,75 @@
+BS Counter
+----------
+
+This archive includes two versions of the counter:
+
+bscount.cgi    - Counter which will generate the number of hits either as
+                  a text string or a series of images, uses Server Side 
+                  Includes (SSI) so that it can be inserted into an html document.
+
+bsimgcount.cgi - Counter which will generate the number of hits by creating 
+                 an image (requries the GD library). The count can then be 
+                 shown by using a simple html image tag.
+
+
+- Installation -
+
+You will then need to edit the file of whichever counter you decide to use 
+(bscount.cgi or bsimgcount.cgi) and define the varables described.
+
+You will also need to set the following permissions:
+
+$ chmod 755 bscount.cgi
+$ chmod 755 bsimgcount.cgi
+$ chmod 606 data
+
+
+- Using the counter - 
+
+To use the bscount.cgi script, include the following in the html of your document:
+(Note: you will need to have ssi enabled, some servers require that your pages be named
+document.shtml rather than document.html or document.htm)
+
+ - Graphical counter:
+
+   <a href="bscount.cgi?file=pagename&what=view">
+   <!--#include virtual="bscount.cgi?type=g&file=mycount&style=LED&imgtype=png"-->
+   </a>
+
+   - style is the name of the digit directory you want to use. e.g. odometer.
+   - file is the name of your page (so you can have multiple counters)
+   - imagetype is the extension/format of the image. e.g. png
+
+ - Text-based counter:
+
+   <a href="bscount.cgi?file=pagename&what=view">
+   <!--#include virtual="bscount.cgi?type=t&file=mycount&fntface=Verdana&fntsize=4&fntcolor=AA0000&fntbold"-->
+   </a>
+
+   - file is the name of your page (for multiple counters)
+   - fntface is the font you want. e.g. Arial
+   - fntsize is how big you wan the font to be. e.g. 3
+   - fntcolor is the color of the text e.g. 000000
+   - fntbold is added if you want a bold font
+
+
+To use the bsimgcount.cgi script, include the following in the html of your document:
+
+ <a href="bscount.cgi?file=pagename&what=view">
+ <img src="/cgi-bin/BSCounter/bsimgcount.cgi?file=stanback.net&style=LED">
+ </a>
+
+ - file is the name of your page (for multiple counters)
+ - syle is the the name of the digit directory you want to use. e.g. odometer.
+   (digits must be in png format)
+
+
+Also, If you want more styles of digits for the graphical counter, be sure to
+visit www.digitmania.com. - Images will need to be converted into .png 
+format for the bsimgcount.cgi script.
+
+
+Thanks,
+Brian Stanback
+brian@stanback.net
+http://www.stanback.net

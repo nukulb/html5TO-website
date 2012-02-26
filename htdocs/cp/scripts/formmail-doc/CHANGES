@@ -1,0 +1,96 @@
+Version 1.0     06/11/95  -  This script was created.
+Version 1.1     08/03/95  -  A major hole in the script which allowed users
+                             to run commands under your server's uid was
+                             disabled, thanks to Paul Phillips, who noticed
+                             the error.
+                          -  The ability to redirect the user to a specified
+                             HTML file after they filled out a form was
+                             added.
+Version 1.2     09/23/95  -  If the form field is one of the required or
+                             optional 'special' fields, such as redirect,
+                             recipient, subject, email, realname, etc... the
+                             script will not print these fields to either
+                             your mail message or to the user's screen when
+                             they are returned to a generic form response.
+                             It helps you so that things do not get
+                             duplicated.
+Version 1.3     01/21/96  -  Much needed update finally completed
+                          -  Added form fields: env_report, bgcolor,
+                             background, link_color, vlink_color, title,
+                             text_color, return_link_title, return_link_url
+                             and required.
+                          -  Security hole, which allowed any user on any
+                             system to bum off of your FormMail script, has
+                             been plugged up with the @referers variable.
+                          -  Report style in return html and e-mail touched
+                             up a bit.
+Version 1.4     01/23/96  -  Added options: sort, alink_color
+                          -  Fixed a few bugs from Version 1.3, namely the
+                             fact that the link_colors weren't working well.
+                          -  FormMail now supports both the GET and POST
+                             methods.
+Version 1.5     02/05/96  -  Sorting of Fields in E-Mail Response Fixed.
+                          -  print_config option added.
+Version 1.6     05/02/97  -  Sorting of fields by default was fixed to now
+                             sort in the order the fields are passed to
+                             FormMail from the web browser, which is usually
+                             the same order as they appear in the HTML form.
+                          -  The sort order: directive, env_report and
+                             print_config parsing routines were made to
+                             better compensate for line breaks and extra
+                             spaces in input for ease of use.
+                          -  Redirect error causing the redirect option to
+                             incorrectly work with https (secure servers)
+                             was fixed.
+                          -  Input of a '0' in a regular form field now
+                             recognized as input and sent back to user.
+                          -  Output of non-filled in form fields suppressed.
+                          -  E-mail addresses checked for correct syntax if
+                             designated a required field.
+                          -  Fields only printed if they contain a value or
+                             if the print_blank_fields option is set to 1.
+                          -  missing_fields_redirect added so you can route
+                             users who don't completely fill out the form to
+                             a pre-made HTML page.
+                          -  Parts of code optimized, especially in respect
+                             to the way config variables are handled.
+Version 1.7     07/27/01  -  Added in @recipients to defeat spamming attempts
+                          -  Added in @valid_ENV to allow administrators to
+                             specify what environment variables can be sent.
+Version 1.8     08/02/01  -  Fixed the recipients code to allow multiple
+                             recipients using the 'recipients' form field and
+                             commas. Under certain cases in v1.7, spam could
+                             still get through by appending a legit recipient
+                             to the list of intended spam victims.
+                          -  Moved send_email subroutine in front of
+                             return_html as many people reported their web
+                             server would kill the FormMail process after the
+                             redirect command was issued and no e-mail would
+                             be sent.
+Version 1.9     08/03/01  -  Added in a further anti-spam check which would
+                             take advantage of newline characters in the
+                             subject to send invalid e-mail.
+                          -  Removed a restriction when checking e-mail
+                             addresses for validity that required a 2 - 3
+                             character domain extension.  With the new TLD's
+                             becoming available, it can no longer apply.
+Version 1.91    04/19/02  -  The same vulnerability that was patched in 1.9
+                             with the subject field still existed in the email
+			     and realname fields. Newline characters are no
+			     longer allowed in any fields that are placed in
+			     the header of the message.
+			  -  Much stronger default regular expression checking
+			     in the @recipients array is now implemented.  This
+			     will combat the % hack and other known exploits.
+			  -  The options for sendmail were moved into the
+			     $mailprog variable and -i was added so that single
+			     periods on a line will not cause the end of the
+			     message.
+Version 1.92    04/21/02  -  Removed cross-site scripting vulerabilities
+                             by converting all <, >, & and " into their HTML
+                             equivalents when displayed on a web page. These
+                             characters are left intact in the e-mail message.
+                          -  Now removes any null bytes from form input.
+                          -  Fixed field recognition so that '0' is now a
+                             valid input.  Supposedly fixed in v1.6.
+                          -  Fixed print_blank_fields
