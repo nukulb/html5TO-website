@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Counter setup</title>
+</head>
+
+<BODY  BGCOLOR="#E6E6DC" MARGINHEIGHT="0" MARGINWIDTH="0" LEFTMARGIN="0" TOPMARGIN="0" RIGHTMARGIN="0" BOTTOMMARGIN="0">
+<br>
+<table width="80%" border="0" cellspacing="0" cellpadding="0" BGCOLOR=#000000 align="CENTER">
+  <tr>
+    <td>
+      <table width="100%" border="0" cellspacing="1" cellpadding="7" align="CENTER">
+	<tr bgcolor="#A5955C">
+	  <td width="100%" HEIGHT=40% align="center"><font face="Verdana" size="2" color="#000000"><b>BS Counter</b></font></td>	
+	</tr>
+	<tr>
+	  <td bgcolor="#D6D1B6" align="left">
+	    <font face="Verdana" size="2" color="#000000">
+	      <p>Please find the latest version here:&nbsp;<a href="http://www.stanback.net" target="_blank">http://www.stanback.net</a></p>
+	      <p><a href="/cp/scripts/bscounter-doc/index.html">Documentation.</a></p>
+	    </font>
+	    <table width="100%" border="0" align="CENTER">
+	      <tr>
+		<td align="left" valign="top"><font face="Verdana" size="2" color="#000000"><b>About</b></font></td>
+	      </tr>
+	      <tr>
+		<td align="left" width="80%"><font face="Verdana" size="2" color="#000000">Features include: blocking of multiple hits from the same user, insertion of commas, text-based or graphical modes, supports multiple counters from the same script, and tracks users' browsers, operating systems, and location. (requires SSI or GD.pm)</font></td>
+	      </tr>
+            </table>
+
+<table width="100%" border="0" align="left">
+              <tr>
+                <td align="left" valign="top" colspan="2"><font face="Verdana" size="2" color="#000000"><b>Activating the counter</b></font></td>
+              </tr>
+<tr>
+                <td align="left" valign="top" colspan="2"><font face="Verdana" size="2" color="#000000">
+Both  bscount.cgi (text-based mode) and bsimgcount.cgi (graphical mode) have been installed into your home directory.
+During the installation main scripts settings, such as your domain name, pathes to images and directory where hit logs are stored, have been 
+configured.
+<DL>
+<DT>Now you can configure the $reload  variable:
+<DD>-setting the value to 1, you block counter reloads;
+<DD>-setting the value to 0, you disable block counter reloads, which is the default.
+</DL>
+</p>To activate the counter, you need to enter the name of the page the counter will be placed on. Also, select the
+style of the counter, i.e. the way it will look on this page.
+</font>
+</td>
+              </tr>
+<tr>
+<form action="../../cgi-bin/tstcount.cgi" method="post" >
+<td bgcolor="#D6D1B6" align="right" width="50%"><font face="Verdana" size="2" color="#000000">File name:</font></td>
+<td bgcolor="#D6D1B6"><input type="text" name="file_name"/></td>
+</tr>
+<tr>
+<td bgcolor="#D6D1B6" align="right" width="50%"><font face="Verdana" size="2" color="#000000">Style:</font></td>
+<td bgcolor="#D6D1B6">
+<select name="style_name">
+<option value="LED">LED</option>
+<option value="LED_g">LED_g</option>
+<option value="LED_r">LED_r</option>
+<option value="bluesky">bluesky</option>
+<option value="blushdw">blushdw</option>
+<option value="curly">curly</option>
+<option value="default">default</option>
+<option value="embwhite">embwhite</option>
+<option value="links">links</option>
+<option value="odometer">odometer</option>
+<option value="plain_b">plain_b</option>
+</select>
+</td>
+</tr>
+<tr>
+<td colspan="2" bgcolor="#D6D1B6" align="center">
+<input type="submit" name="submit" value="Submit">
+</td>
+</form></tr>
+            </table>
+	  </td>
+	</tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

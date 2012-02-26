@@ -1,0 +1,21 @@
+<plaintext>
+<html>
+<head>
+<title>Mailform example</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+<body>
+<form name="formmail"  action="/cgi-bin/formmail/formmail.cgi" method="post">
+<input type=hidden name="recipient" value="postmaster@sandbox.htmltoronto.ca">
+<p><b>Subject:</b><br>
+<input type=text name="subject" size="45" value=""></p><br>
+<p><b>Your Name:</b><br>
+<input type=text name="realname" size="45" value=""></p><br>
+<p><b>Your Email Address:</b><br>
+<input type=text name="email" size="45" value=""></p><br>
+<p><b>Comments:</b><br>
+<textarea name="body" rows="10" cols="60" wrap="virtual"></textarea></p><br>
+<p><input type="submit" value="Send Email"> <input type="reset" value="Reset Form"></p>
+</form>
+</body>
+</html>

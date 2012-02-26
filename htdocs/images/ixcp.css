@@ -1,0 +1,153 @@
+/*----------------------------- RESET ----------------------------- */
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+body{line-height:1}
+ol,ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}
+table{border-collapse:collapse;border-spacing:0}
+a{text-decoration:none}
+
+h1, h2, h3, strong{font-weight:bold}
+button{background:none; border:none; cursor:pointer}
+
+/*----------------------------- GLOBAL ----------------------------- */
+
+html, body{height:100%;}
+
+body, p, ol, ul, td {
+    font-family: Arial,Helvetica,sans-serif;
+    font-size:  12px;
+    line-height: 18px;
+    color:#666;
+}
+
+body{ background: #fafafa url('bg_header.png') 0 0 repeat-x }
+body.plain{ background: #FFF }
+
+a{color: #0D67AD}
+	a:hover{text-decoration:underline}
+
+.clear{clear:both}
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.clearfix {display: inline-block;}
+ 
+html[xmlns] .clearfix {display: block;}
+* html .clearfix {height: 1%;}
+
+.hideText{text-indent:-2000px;font-size:0em;line-height:0em;overflow:hidden;}
+.marginR{margin-right:20px !important}
+.separator{display:block; border-top:1px solid #CCC; border-bottom:1px solid #FFF; height:0; margin:5px 0}
+.floatR{float:right}.floatL{float:left}
+.spacing{display:block; height:20px}
+.sections{display:block}
+
+.section{display:block; margin:20px 0}
+	.section img{margin-right:10px; float:left}
+	
+strong{color:#242424}
+h2{margin-bottom: 10px}
+
+/*----------------------------- HEADER ----------------------------- */
+
+#wrapper{width:960px; margin:0 auto; display:block}
+#header{position:relative; display:block;}
+#logo{background:url('logo_ix.png') 0 0 no-repeat; display:block; width:165px; height:35px; margin:2px 0 0; cursor:pointer}
+
+/*----------------------------- LOGIN ----------------------------- */
+
+#login_links{width:40%}
+.login_links{background-image:url('icon_sidemenu.png'); background-repeat: no-repeat; padding: 2px 0 2px 30px; display:block; margin:0 0 5px; color:#999; font-size:11px}
+	.login_links#ix_password{background-position:-4px -312px}
+	.login_links#ix_helpdesk{background-position:-4px -404px}
+	.login_links#ix_faqs{background-position:-4px -342px}
+	.login_links#ix_blog{background-position:-4px -254px}
+	.login_links#ix_stats{background-position:-4px -374px}
+	
+	.login_links:hover{color:#242424; text-decoration:none}
+	.login_links#ix_password:hover{background-position:-4px -156px}
+	.login_links#ix_helpdesk:hover{background-position:-4px -4px}
+	.login_links#ix_faqs:hover{background-position:-4px -186px}
+	.login_links#ix_blog:hover{background-position:-4px -94px}
+	.login_links#ix_stats:hover{background-position:-4px -218px}
+	
+/*----------------------------- CONTENT ----------------------------- */
+
+#title{font-size:18px; font-weight:bold; margin: 10px 0; line-height:20px; width:50%; float:left}
+#title > span{font-size:14px; color:#999; font-weight:normal; display:block; margin: 10px 0}
+#title > i{font-style:normal; color:#999}
+#title > p{font-weight:normal; color:#666}
+
+#content{display:block; margin:30px 0;}
+	#content h1{font-size:20px; color:#333; font-weight:bold; background:url('hr.png') 0 bottom repeat-x; padding-bottom:12px; text-indent:2px; margin-bottom:5px}
+	#content .subtitle{font-size:16px}
+	
+#ipad{
+background: #000 url('bg_ipad.png') left top no-repeat;
+display:block;
+margin: 10px auto;
+padding:40px 60px 40px 40px;
+position:relative;
+-webkit-border-radius:20px;
+-webkit-border-radius:20px;
+border-radius:20px;
+}
+
+#button{
+background:url('img_btn_ipad.png') 0 0 no-repeat;
+display:block;
+width:42px;
+height:42px;
+position:absolute;
+z-index:5;
+top:50%;
+right:5px
+}
+
+.style4{text-align:center; font-size:18px; margin: 50px auto; display:block; width: 70%; line-height:30px}
+	.style4 a{font-size:24px; margin: 10px 0; font-weight:bold; color: #242424}
+
+.cols2, .cols2_big, .cols2_small{
+display:block;
+float:left;
+margin-top:10px
+}
+	.cols2{width:470px}
+	.cols2_small{width:210px; margin-right:40px}
+	.cols2_big{width:710px}
+	.cols2_big > div{margin-bottom:30px}
+	.cols2 a{text-transform:capitalize; color: #0D67AD}
+	.cols2 a:hover{text-decoration:underline}
+	
+.btn_collection{display:inline-block; margin:10px 0; zoom:1; *display:inline;}
+	.btn_collection li{background:#EFEFEF url('bg_btn_grey.png') 0 0 repeat-x; float:left; border:1px solid #CCC; border-left:none; padding:2px}
+	.btn_collection li:first-child{border-left:1px solid #CCC;border-top-left-radius: 10px; border-bottom-left-radius: 10px; -moz-border-radius-topleft: 10px; -moz-border-radius-bottomleft: 10px; -webkit-border-top-left-radius: 10px; -webkit-border-bottom-left-radius: 10px;}
+	.btn_collection li:last-child{border-top-right-radius: 10px; border-bottom-right-radius: 10px;; -moz-border-radius-topright: 10px; -moz-border-radius-bottomright: 10px; -webkit-border-top-right-radius: 10px; -webkit-border-bottom-right-radius: 10px;}
+	.btn_collection li:hover{background:#DDD}
+	.btn_collection button{ font-size:10px; color:#666; cursor:pointer}
+	.btn_collection button:hover{ color:#242424}
+	
+.btn_collection_blue{display:block; padding-left:15%}
+	.btn_collection_blue button{display:inline-block; zoom:1; *display:inline; float:left; margin-right:10px}
+
+/*----------------------------- FOOTER ----------------------------- */
+
+#footer{
+display:block;
+border-top:1px solid #CCC;
+margin:0 0 20px
+}
+	#footer ul{border-top:1px solid #FFF; display:block}
+	#footer li{float:left; padding:10px 15px 5px 0; display:inline-block; zoom:1; *display:inline}
+	#footer li a{color:#666; font-size:11px}
+	#footer li a:hover{text-decoration:underline}
+	#footer p{font-size:11px}
