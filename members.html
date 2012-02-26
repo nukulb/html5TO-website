@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+	<head>
+		<meta charset="utf-8" />
+	</head>
+	<body>
+		
+		<div id="memberList"></div>
+		<script src="js/jquery-1.6.4.min.js"></script>
+		<script src="js/api/meetupApi.js"></script>
+		<script>		
+			meetupApi.getMeetupMembers(function(data) {
+				var html = "";
+				for(var i in data)
+				{
+					html += "<dl>";
+					html += "<dt>Member Name:</dt><dd><a href=\"";
+					html += data[i].profile_url;
+					html += "\">";
+					html +=  data[i].name;
+					html += "</a></dd>";
+					html += "<dt>Bio:</dt><dd>"; 
+					html += data[i].bio;
+					html += "</dd>";
+					html += "<dt>Photo:</dt><dd><img src=\"";
+					html += data[i].photo_url;
+					html += "\"/></dd>";
+					html += "</dl>";
+				}
+				document.getElementById("memberList").innerHTML += html;
+			});
+		</script>
+	
+	</body>
+</html>
